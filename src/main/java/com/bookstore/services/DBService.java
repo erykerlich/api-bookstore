@@ -28,7 +28,7 @@ public class DBService {
         Book book4 = new Book(null, "O Iluminado", "Stephen King", "Lorem ipsum", cat1);
         Book book5 = new Book(null, "Doutor Sono", "Stephen King", "Lorem ipsum", cat1);
 
-        cat1.getBookList().addAll(Arrays.asList(book1, book2));
+        cat1.getBookList().addAll(Arrays.asList(book1));
         cat2.getBookList().addAll(Arrays.asList(book2));
         cat3.getBookList().addAll(Arrays.asList(book3, book4, book5));
 
