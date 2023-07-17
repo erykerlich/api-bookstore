@@ -25,5 +25,10 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+    public Category create(Category obj){
+        obj.setId(null);
+        return categoryRepository.save(obj);
+    }
+
 
 }
