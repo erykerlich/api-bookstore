@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity(name = "Categories")
+@Entity
 public class Category implements Serializable {
 
     private static final Long serialVersionUID = 1L;
