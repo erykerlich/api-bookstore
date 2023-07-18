@@ -3,6 +3,7 @@ package com.bookstore.controllers;
 import com.bookstore.domain.Category;
 import com.bookstore.dtos.CategoryDto;
 import com.bookstore.services.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/categories")
 public class CategoryController {
@@ -34,7 +36,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> create(@RequestBody Category obj){
+    public ResponseEntity<Category> create(@Valid @RequestBody Category obj){
         obj = categoryService.create(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(obj.getId()).toUri();
@@ -42,7 +44,7 @@ public class CategoryController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CategoryDto> update(@PathVariable Integer id, @RequestBody CategoryDto objDto){
+    public ResponseEntity<CategoryDto> update(@Valid @PathVariable Integer id, @RequestBody CategoryDto objDto){
         Category newObj = categoryService.update(id, objDto);
         return ResponseEntity.ok().body(new CategoryDto(newObj));
     }
