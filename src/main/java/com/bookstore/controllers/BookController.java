@@ -24,7 +24,6 @@ public class BookController {
         return ResponseEntity.ok().body(obj);
     }
 
-
     @GetMapping
     public ResponseEntity<List<BookDto>> findAll(@RequestParam(value = "category", defaultValue = "0")Integer id_cat){
         List<Book> list = bookService.findAll(id_cat);
@@ -32,6 +31,18 @@ public class BookController {
         return ResponseEntity.ok().body(listDto);
         //localhost:8080/books?category=1
     }
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Book> update(@PathVariable Integer id, @RequestBody Book obj){
+        Book newObj = bookService.update(id, obj);
+        return ResponseEntity.ok().body(newObj);
+    }
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Book> updatePatch(@PathVariable Integer id, @RequestBody Book obj){
+        Book newObj = bookService.update(id, obj);
+        return ResponseEntity.ok().body(newObj);
+    }
+
 
 
 

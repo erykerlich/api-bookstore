@@ -28,4 +28,16 @@ public class BookService {
         return bookRepository.findAllByCategory(id_cat);
 
     }
+
+    public Book update(Integer id, Book obj) {
+        Book newObj = findById(id);
+        updateDate(newObj, obj);
+        return bookRepository.save(newObj);
+    }
+
+    private void updateDate(Book newObj, Book obj) {
+        newObj.setTitle(obj.getTitle());
+        newObj.setNameAuthor(obj.getNameAuthor());
+        newObj.setText(obj.getText());
+    }
 }
