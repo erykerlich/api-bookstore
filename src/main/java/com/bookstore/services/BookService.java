@@ -48,4 +48,9 @@ public class BookService {
         obj.setCategory(cat);
         return bookRepository.save(obj);
     }
+
+    public void delete(Integer id) {
+        Book obj = findById(id);
+        bookRepository.delete(obj);
+    }
 }
