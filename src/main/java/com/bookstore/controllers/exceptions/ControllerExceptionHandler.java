@@ -1,5 +1,6 @@
 package com.bookstore.controllers.exceptions;
 
+import com.bookstore.services.exceptions.DataIntegtrityViolationException;
 import com.bookstore.services.exceptions.ObjectNotFoundException;
 import jakarta.servlet.ServletRequest;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,13 @@ public class ControllerExceptionHandler {
         StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.NOT_FOUND.value(),
                 e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(DataIntegtrityViolationException.class)
+    public ResponseEntity<StandardError> dataIntegtrityViolationException(DataIntegtrityViolationException e, ServletRequest request){
+        StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
+                e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
 }
